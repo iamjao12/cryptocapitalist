@@ -23,7 +23,7 @@ const gameOverModal = document.getElementById('game-over-modal');
 const finalAmountSpan = document.getElementById('final-amount');
 
 // --- Estado do Jogo ---
-let money = 100.00; // Dinheiro total na carteira
+let money = 10.00; // Dinheiro total na carteira
 let gameTime = 20 * 60;
 const gameTickInterval = 1000;
 let eventInterval = 45;
