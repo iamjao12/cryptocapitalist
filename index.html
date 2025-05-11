@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Capitalist</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Crypto Capitalist</h1>
+
+        <div class="stats">
+            <p>Carteira: R$ <span id="money">10.00</span></p>
+            <p>Tempo Restante: <span id="timer">30:00</span></p>
+        </div>
+
+        <div class="tab-header">
+            <button class="tab-button active" onclick="showTab('markets')">Mercados</button>
+            <button class="tab-button" onclick="showTab('upgrades')">Melhorias</button>
+        </div>
+
+        <div id="tab-content">
+            <div id="markets-content" class="markets tab-pane active">
+                <h2>Mercados de Criptomoedas</h2>
+                <div id="crypto-list">
+                    </div>
+            </div>
+
+            <div id="upgrades-content" class="upgrades tab-pane">
+                <h2>Melhorias</h2>
+                <div id="upgrade-list">
+                    </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="event-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeEventModal()">&times;</span>
+            <h2>Evento Aleatório!</h2>
+            <p id="event-description">Descrição do evento aqui...</p>
+            <p>Investir neste evento custará R$ <span id="event-cost">0.00</span></p>
+            <div id="event-choices">
+    <button id="event-choice-1" onclick="handleEventChoice(1, currentEvent)">Investir R$ ...</button>
+    <button id="event-choice-2" onclick="handleEventChoice(2, currentEvent)">Ignorar Evento</button>
+</div>
+            <p id="event-result" class="event-feedback"></p>
+        </div>
+    </div>
+
+    <div id="game-over-modal" class="modal">
+        <div class="modal-content">
+            <h2>O tempo acabou!</h2>
+            <p>Seu império financeiro chegou ao fim (por enquanto!).</p>
+            <p><strong>Fortuna Total Acumulada:</strong></p>
+            <p style="font-size: 1.5em; color: #16a085;">R$ <span id="final-amount">0.00</span></p>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

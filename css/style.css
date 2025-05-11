@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinha no topo */
+    padding-top: 20px;
+    min-height: 100vh;
+}
+
+.game-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 800px;
+}
+
+.empty-list-message {
+    text-align: center;
+    color: #7f8c8d; /* Cinza */
+    padding: 20px;
+    font-style: italic;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 0; /* Ajuste para o H2 dentro das abas */
+    margin-bottom: 15px;
+}
+
+.stats {
+    background-color: #ecf0f1;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Para telas menores */
+    font-weight: bold;
+}
+
+.stats p {
+    margin: 5px 10px; /* Espaçamento entre os stats */
+}
+
+.stats span {
+    color: #2980b9;
+}
+
+/* === ESTILOS DAS ABAS === */
+.tab-header {
+    text-align: center;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #bdc3c7;
+    padding-bottom: 5px;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    background-color: #ecf0f1; /* Cor inativa */
+    margin: 0 5px;
+    border-radius: 5px 5px 0 0; /* Bordas arredondadas em cima */
+    font-size: 1em;
+    color: #7f8c8d;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tab-button:hover {
+    background-color: #dcdcdc;
+}
+
+.tab-button.active {
+    background-color: #3498db; /* Cor ativa */
+    color: white;
+    font-weight: bold;
+}
+
+.tab-pane {
+    display: none; /* Esconde todas as abas por padrão */
+    padding: 15px;
+    border: 1px solid #bdc3c7;
+    border-top: none; /* Remove borda superior para conectar com as abas */
+    border-radius: 0 0 5px 5px; /* Bordas arredondadas embaixo */
+    background-color: #fff; /* Garante fundo branco */
+}
+
+.tab-pane.active {
+    display: block; /* Mostra a aba ativa */
+}
+/* ====================== */
+
+.crypto-item, .upgrade-item {
+    background-color: #f8f9f9;
+    border: 1px solid #e0e0e0;
+    padding: 12px 15px; /* Aumentado padding */
+    margin-bottom: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Para responsividade */
+    gap: 10px; /* Espaçamento entre os elementos flex */
+}
+
+/* Ajuste para agrupar nome/preço/quantidade */
+.crypto-info, .upgrade-info, .locked-info {
+    flex-grow: 1; /* Permite que a área de info cresça */
+}
+
+.crypto-name, .upgrade-name {
+    font-weight: bold;
+   /* flex-basis: 150px; */ /* Removido - flex-grow é melhor */
+}
+
+.crypto-price, .upgrade-cost {
+    color: #e74c3c;
+}
+
+.crypto-owned {
+    color: #16a085;
+}
+
+.crypto-item div:last-child, /* Botões de compra/venda */
+.upgrade-item button { /* Botão de compra de upgrade */
+   /* margin-left: auto; */ /* Empurra para a direita */
+    flex-shrink: 0; /* Não permite que os botões encolham */
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    /* margin-left: 5px; */ /* Removido para usar gap */
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+/* === ESTILOS PARA MERCADO BLOQUEADO === */
+.locked-market {
+    background-color: #e9ecef; /* Fundo cinza claro */
+    border-color: #adb5bd;
+}
+
+.locked-market .locked-keyword {
+    color: black !important; /* !important para garantir sobreposição */
+    font-weight: bold;
+}
+
+.locked-market .locked-text {
+    color: grey !important; /* !important para garantir sobreposição */
+}
+
+.locked-market button:disabled {
+    background-color: #bdc3c7; /* Estilo padrão de desabilitado */
+    cursor: not-allowed;
+}
+/* ==================================== */
+
+
+/* Estilos do Modal (Geral)*/
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed; /* Fica fixo na tela */
+    z-index: 1; /* Fica sobre outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Habilita scroll se necessário */
+    background-color: rgba(0,0,0,0.6); /* Fundo escuro semi-transparente */
+    /* Adicionado para centralizar o conteúdo com flex */
+    display: none; /* Controlado pelo JS agora */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto; /* Centraliza vertical e horizontalmente */
+    padding: 30px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    position: relative; /* Para o botão de fechar */
+    text-align: center;
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+}
+
+#event-choices button {
+    margin: 10px;
+    padding: 10px 20px;
+}
+
+/* Garante que os botões fiquem visíveis por padrão dentro do modal de evento */
+#event-choices {
+    display: block; /* Ou flex, se preferir */
+}
+
+
+.event-feedback {
+    margin-top: 15px;
+    font-weight: bold;
+}
+.event-success {
+    color: #27ae60; /* Verde */
+}
+.event-failure {
+    color: #c0392b; /* Vermelho */
+}
+
+.crypto-actions button {
+    margin-left: 5px; /* Adiciona uma margem à esquerda dos botões */
+    margin-right: 5px; /* Adiciona uma margem à direita dos botões */
+}
+
+/* Estilos para telas menores que 768 pixels de largura (celulares) */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px; /* Ajuste o tamanho da fonte base para celular */
+        padding: 10px; /* Reduza o preenchimento geral */
+    }
+
+    .container { /* Se você tiver um container principal */
+        width: 100%;
+        margin: 0;
+    }
+
+    .crypto-item, .upgrade-item, .locked-market {
+        flex-direction: column; /* Empilha os elementos em telas pequenas */
+        align-items: flex-start; /* Alinha os itens à esquerda */
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+
+    .crypto-info, .upgrade-info, .locked-info {
+        margin-bottom: 10px;
+    }
+
+    .crypto-actions button, .upgrade-item button, .locked-market button {
+        margin-right: 0;
+        margin-bottom: 5px;
+        width: 100%; /* Botões ocupam a largura total */
+    }
+
+    #money-display, #timer-display {
+        font-size: 1.2em; /* Aumenta um pouco a fonte do dinheiro e timer */
+        text-align: center; /* Centraliza o texto */
+    }
+
+    /* Adicione aqui outros ajustes para elementos específicos que precisam ser responsivos */
+    #event-modal .modal-content {
+        width: 90%;
+        padding: 20px;
+    }
+
+    #event-choices button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* Estilos para telas um pouco maiores (tablets pequenos, por exemplo) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    body {
+        font-size: 18px;
+        padding: 20px;
+    }
+
+    /* Adicione aqui ajustes específicos para tablets */
+}
