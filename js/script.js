@@ -23,7 +23,7 @@ const gameOverModal = document.getElementById('game-over-modal');
 const finalAmountSpan = document.getElementById('final-amount');
 
 // --- Estado do Jogo ---
-let money = 10.00; // Dinheiro total na carteira
+let money = 1000.00; // Dinheiro total na carteira
 let gameTime = 20 * 60;
 const gameTickInterval = 1000;
 let eventInterval = 45;
@@ -368,6 +368,7 @@ function handleEventChoice(choiceIndex) {
                 eventResultP.innerHTML = `${currentEvent.successMessage} (+ R$ ${formatMoney(currentEvent.successBonus)})`;
                 eventResultP.className = 'event-feedback event-success';
             }
+            money += currentEvent.successBonus;
         } else {
             if (eventResultP) {
                 eventResultP.innerHTML = `${currentEvent.failureMessage} (- R$ ${formatMoney(currentEvent.failurePenalty)})`;
