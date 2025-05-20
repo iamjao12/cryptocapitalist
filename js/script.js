@@ -112,33 +112,22 @@ function updateDisplay() {
             cryptoInfoDiv.appendChild(nameSpan);
             cryptoInfoDiv.appendChild(document.createElement('br'));
             cryptoInfoDiv.appendChild(priceSpan);
-            cryptoInfoDiv.appendChild(document.createTextNode(' | ')); // Adiciona um separador
+            cryptoInfoDiv.appendChild(document.createTextNode(' | '));
             cryptoInfoDiv.appendChild(ownedSpan);
 
             const cryptoActionsDiv = document.createElement('div');
             cryptoActionsDiv.classList.add('crypto-actions');
 
-            const selectAmount = document.createElement('select');
-            selectAmount.id = `buy-sell-amount-${crypto.id}`;
-            const amounts = [1, 10, 50];
-            amounts.forEach(amount => {
-                const option = document.createElement('option');
-                option.value = amount;
-                option.textContent = `${amount}x`;
-                selectAmount.appendChild(option);
-            });
-
             const buyButton = document.createElement('button');
             buyButton.textContent = 'Comprar';
-            buyButton.onclick = () => buyCrypto(crypto.id, parseInt(selectAmount.value));
+            buyButton.onclick = () => buyCrypto(crypto.id,1);
             buyButton.disabled = money < crypto.price;
 
             const sellButton = document.createElement('button');
             sellButton.textContent = 'Vender';
-            sellButton.onclick = () => sellCrypto(crypto.id, parseInt(selectAmount.value));
+            sellButton.onclick = () => sellCrypto(crypto.id,1);
             sellButton.disabled = crypto.owned === 0;
 
-            cryptoActionsDiv.appendChild(selectAmount);
             cryptoActionsDiv.appendChild(buyButton);
             cryptoActionsDiv.appendChild(sellButton);
 
